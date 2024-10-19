@@ -40,6 +40,7 @@
         
         header {
             background: var(--primary-dark);
+            /* background-color: rgba(29, 54, 58, 0.5); */
             padding: 0.8rem 0;
             position: sticky;
             top: 0;
@@ -60,16 +61,16 @@
         }
 
         .logo {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background-color: white;
-            border-radius: 50%;
+            border-radius: 40%;
             padding: 5px;
         }
         
         .company-name {
             font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 550;
             color: var(--text-light);
         }
         
@@ -133,7 +134,7 @@
             background: white;
             color: var(--text-dark);
             padding: 2rem;
-            margin: 2rem 0
+            margin: 2rem 0;
             border-radius: 10px;
             margin-bottom: 2rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -397,6 +398,7 @@
                 </div>
                 <nav>
                     <ul>
+                        <li><a href="#profile">Profil</a></li>
                         <li><a href="#bistro">Bistro DAUM</a></li>
                         <li><a href="#space">Space EUM</a></li>
                         <li><a href="#location">Lokasi</a></li>
@@ -407,6 +409,16 @@
     </header>
     
     <main class="container">
+        <section id="profile" class="content-section">
+            <h2>Profil Perusahaan</h2>
+            <p>PT. RPLAY GROUP INDONESIA adalah perusahaan yang berdedikasi untuk menghubungkan budaya Korea dan Indonesia melalui berbagai inisiatif kreatif. Kami berfokus pada pengembangan bisnis kuliner dan ruang seni yang memadukan elemen-elemen terbaik dari kedua budaya.</p>
+            <div class="slider-container profile-slider">
+                <img src="./img/01.jpeg" alt="RPLAY GROUP Profile">
+                <img src="./img/space eum2.jpeg" alt="RPLAY GROUP Team">
+                <img src="./img/space eum3.jpeg" alt="RPLAY GROUP Activities">
+            </div>
+        </section>
+        
         <section id="bistro" class="content-section">
             <h2>Bistro DAUM</h2>
             <p>Tempat dimana kalian dapat menikmati makanan Korea yang lezat dan berbagai hidangan penutup! Staf kami yang ramah akan menyambut kalian! Selamat menikmati makanan dalam suasana yang nyaman!</p>
@@ -445,7 +457,7 @@
             </div>
         </section>
 
-        <section>
+        <section class="content-section">
             <h2>About Us</h2>
             <div class="instagram-wrapper"> <!-- Tambahkan kelas instagram-wrapper di sini -->
                 <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C6nj6aQL2Oe/?img_index=1" data-instgrm-version="12"></blockquote>
@@ -455,7 +467,7 @@
             </div>
         </section>        
         
-        <section id="location">
+        <section id="location" class="content-section">
             <h2>Lokasi Kami</h2>
             <div class="map-container">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15782.273181943248!2d116.0730505!3d-8.5412225!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc1004082c57f%3A0x44c7e41e983aa0d0!2sPT.RPLAY%20GROUP%20INDONESIA!5e0!3m2!1sid!2sid!4v1729343625364!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -465,9 +477,9 @@
     
     <footer>
         <div class="container">
-            <p>Republic of Korea (주)알플레이 / 대표: 정단영 / 강원도 춘천시 서면 덕두원길 108-27 033-251-8900</p>
-            <p>PT. Rplay Group Indonesia</p>
-            <p>Jl. Pariwisata No.8, Montong, Batu Layar, Kec. Batu Layar, Kabupaten Lombok Barat, Nusa Tenggara Bar. 83355</p>
+            <p>Republic of Korea (주)알플레이 / 대표: 정단영 / 강원도 춘천시 서면 덕두원길 </p>
+            <p>033-251-8900</p>
+            <p>Copyright © 2024 PT. Rplay Group Indonesia</p>
         </div>
     </footer>
 
@@ -500,6 +512,10 @@
                 }
             };
 
+            tns({
+                container: '.profile-slider',
+                ...sliderOptions
+            });
             tns({
                 container: '.bistro-slider',
                 ...sliderOptions
