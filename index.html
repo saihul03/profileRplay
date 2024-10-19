@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT. RPLAY INDONESIA - We Play Revolutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+    <style>
+        :root {
+            --primary-color: #FFD700;
+            --secondary-color: #FFF176;
+            --text-color: #333;
+            --footer-color: #ceba05;
+            --slider-arrow-color: rgba(0, 0, 0, 0.5);
+            --slider-arrow-hover: rgba(0, 0, 0, 0.8);
+        }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        
+        header {
+            background: linear-gradient(to right, #FFD700, #FFF176);
+            color: var(--text-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .company-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+        
+        .company-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.1rem;
+        }
+        
+        .slogan {
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 2px 0;
+            transition: 0.3s;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #000;
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+        
+        section {
+            margin-bottom: 2rem;
+        }
+        
+        .content-section {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .slider-container {
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .slider-container img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .tns-outer {
+            position: relative;
+        }
+
+        .tns-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .tns-controls button {
+            position: absolute;
+            background: var(--slider-arrow-color);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            pointer-events: all;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tns-controls button:hover {
+            background: var(--slider-arrow-hover);
+        }
+
+        .tns-controls button:first-child {
+            left: 10px;
+        }
+
+        .tns-controls button:last-child {
+            right: 10px;
+        }
+
+        .tns-controls button:before {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            border: solid white;
+            border-width: 3px 3px 0 0;
+        }
+
+        .tns-controls button:first-child:before {
+            transform: rotate(-135deg);
+            margin-left: 4px;
+        }
+
+        .tns-controls button:last-child:before {
+            transform: rotate(45deg);
+            margin-right: 4px;
+        }
+
+        .tns-nav {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .tns-nav button {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            margin: 0 3px;
+            transition: background-color 0.3s ease;
+        }
+
+        .tns-nav button.tns-nav-active {
+            background: white;
+        }
+
+        .contact-info {
+            background: linear-gradient(to right, #FFD700, #FFF176);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .map-container {
+            height: 300px;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .instagram-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .instagram-media {
+            flex: 1 1 300px;
+            max-width: 100%;
+            min-width: 200px;
+        }
+
+        footer {
+            background-color: var(--footer-color);
+            color: var(--text-color);
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: linear-gradient(to bottom, #FFD700, #FFF176);
+                padding: 1rem;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .company-name {
+                font-size: 1.2rem;
+            }
+            
+            .slogan {
+                font-size: 0.9rem;
+            }
+
+            .slider-container img {
+                height: 200px;
+            }
+
+            .tns-controls button {
+                width: 30px;
+                height: 30px;
+            }
+
+            .content-section {
+                padding: 1rem;
+            }
+
+            .map-container {
+                height: 250px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .company-name {
+                font-size: 1.3rem;
+            }
+            
+            .slogan {
+                font-size: 1rem;
+            }
+
+            .slider-container img {
+                height: 250px;
+            }
+
+            .content-section {
+                padding: 1.25rem;
+            }
+
+            .map-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="company-info">
+                    <img src="/img/spaceum.png" alt="RPLAY Logo" class="logo">
+                    <div>
+                        <div class="company-name">PT. RPLAY INDONESIA</div>
+                        <div class="slogan">We Play Revolutions</div>
+                    </div>
+                </div>
+                <div class="hamburger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#bistro">Bistro DAUM</a></li>
+                        <li><a href="#space">Space EUM</a></li>
+                        <li><a href="#location">Lokasi</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section id="bistro" class="content-section">
+            <h2>Bistro DAUM</h2>
+            <p>Tempat dimana kalian dapat menikmati makanan Korea yang lezat dan berbagai hidangan penutup! Staf kami yang ramah akan menyambut kalian! Selamat menikmati makanan dalam suasana yang nyaman!</p>
+            <p><strong>Open Daily:</strong> 10.00-22.00</p>
+            <div class="contact-info">
+                <p><strong>Reservasi:</strong><br>
+                +6281249708596 atau +6281337923660</p>
+            </div>
+            <div class="slider-container bistro-slider">
+                <img src="/img/01.jpeg" alt="Bistro DAUM">
+                <img src="/img/space eum2.jpeg" alt="Bistro DAUM">
+                <img src="/img/space eum3.jpeg" alt="Bistro DAUM">
+            </div>
+        </section>
+
+        <section id="space" class="content-section">
+            <h2>Space EUM이음</h2>
+            <p>Adalah ruang yang menghubungkan budaya dan seni Korea serta Indonesia. Berbagai konten budaya Korea seperti K-ART, K-POP, dan K-BEAUTY akan diperkenalkan. Pada tahun 2024, Space EUM sedang mempersiapkan berbagai pameran dengan tema "Indonesia Bertemu Korea."</p>
+            <p>"Kata '이음' dalam bahasa Korea berarti 'menghubungkan dan menyatukan.'" Melalui ruang ini, kami akan mempersembahkan proyek khusus yang:</p>
+            <ul>
+                <li>Menghubungkan Korea dan Indonesia</li>
+                <li>Menghubungkan komunitas lokal</li>
+                <li>Menghubungkan budaya dengan budaya</li>
+            </ul>
+            <p><strong>Jam Kunjungan:</strong> Selasa-Minggu / Pukul 10:00 - 19:00</p>
+            <div class="contact-info">
+                <p><strong>Hubungi kami:</strong><br>
+                +6281249708596 atau +6281337923660</p>
+            </div>
+            <div class="slider-container space-slider">
+                <img src="/img/01.jpeg" alt="Space EUM">
+                <img src="/img/space eum2.jpeg" alt="Space EUM">
+                <img src="/img/space eum3.jpeg" alt="Space EUM">
+                <img src="/img/space eum4.jpeg" alt="Space EUM">
+                <img src="/img/space eum5.jpeg" alt="Space EUM">
+            </div>
+        </section>
+
+        <section>
+            <h2>About Us</h2>
+            <div class="instagram-wrapper"> <!-- Tambahkan kelas instagram-wrapper di sini -->
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C6nj6aQL2Oe/?img_index=1" data-instgrm-version="12"></blockquote>
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C6qDXb2r2P8/?img_index=1" data-instgrm-version="12"></blockquote>
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C6smRrkLdj2/?img_index=1" data-instgrm-version="12"></blockquote>
+                <script async defer src="//www.instagram.com/embed.js"></script>
+            </div>
+        </section>        
+        
+        <section id="location">
+            <h2>Lokasi Kami</h2>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15782.273181943248!2d116.0730505!3d-8.5412225!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc1004082c57f%3A0x44c7e41e983aa0d0!2sPT.RPLAY%20GROUP%20INDONESIA!5e0!3m2!1sid!2sid!4v1729343625364!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>Republic of Korea (주)알플레이 / 대표: 정단영 / 강원도 춘천시 서면 덕두원길 108-27 033-251-8900</p>
+            <p>Indonesia PT. Rplay Group Indonesia / 대표:류은효</p>
+            <p>Jl. Pariwisata No.8, Montong, Batu Layar, Kec. Batu Layar, Kabupaten Lombok Barat, Nusa Tenggara Bar. 83355</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
+    <script>
+        // Hamburger menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('nav');
+        
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Initialize sliders
+        document.addEventListener('DOMContentLoaded', () => {
+            const sliderOptions = {
+                items: 1,
+                slideBy: 'page',
+                autoplay: true,
+                autoplayButtonOutput: false,
+                controls: true,
+                nav: true,
+                controlsText: ['', ''],
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                responsive: {
+                    768: {
+                        items: 1
+                    }
+                }
+            };
+
+            tns({
+                container: '.bistro-slider',
+                ...sliderOptions
+            });
+
+            tns({
+                container: '.space-slider',
+                ...sliderOptions
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                if (window.innerWidth <= 768) {
+                    nav.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
